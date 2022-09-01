@@ -1,4 +1,10 @@
-import { scryptSync, randomBytes, createHash, timingSafeEqual, BinaryToTextEncoding } from 'crypto';
+import {
+  BinaryToTextEncoding,
+  createHash,
+  randomBytes,
+  scryptSync,
+  timingSafeEqual
+} from 'crypto';
 
 export enum HashAlgorithm {
   sha1 = 'sha1',
