@@ -22,27 +22,27 @@ export enum TextEncoding {
   hex = 'hex'
 }
 
-export type JustAuthOptions = {
+export type JustHashOptions = {
   algorithm?: HashAlgorithm,
   encoding?: TextEncoding,
   salt_length?: number,
   key_length?: number,
 }
 
-class JustAuth {
+class JustHash {
   private hash_algorithm: HashAlgorithm;
   private output_type: BinaryToTextEncoding;
   private salt_length: number;
   private key_length: number;
 
-  constructor(options?: JustAuthOptions) {
+  constructor(options?: JustHashOptions) {
     this.hash_algorithm = options?.algorithm ?? HashAlgorithm.sha512;
     this.output_type = options?.encoding ?? TextEncoding.hex;
     this.salt_length = options?.salt_length ?? 16;
     this.key_length = options?.key_length ?? 64;
   }
 
-  configure(options?: JustAuthOptions) {
+  configure(options?: JustHashOptions) {
     this.hash_algorithm = options?.algorithm ?? this.hash_algorithm;
     this.output_type = options?.encoding ?? this.output_type;
     this.salt_length = options?.salt_length ?? this.salt_length;
@@ -67,4 +67,4 @@ class JustAuth {
   }
 }
 
-export default new JustAuth();
+export default new JustHash();
