@@ -1,4 +1,6 @@
 import JustHash from '../src';
+const _justHash = require('../src');
+console.log(_justHash.hashPassword('password'));
 
 describe('Hash Utilities', () => {
   it('hash and validate a correct password', () => {
