@@ -30,3 +30,5 @@ JustHash.configure({
     key_length: 64;                         // length to hash passwords to
 });
 ```
+
+For use in Vanilla JS: `const JustHash = require('../dist/index.js').default;`

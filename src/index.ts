@@ -68,4 +68,3 @@ class JustHash {
 }
 
 export default new JustHash();
-module.exports = new JustHash();
