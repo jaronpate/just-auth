@@ -53,17 +53,23 @@ class JustHash {
     return createHash(this.hash_algorithm).update(data).digest(this.output_type);
   }
 
-  hashPassword(password: string): string {
+  hashPassword(password: string, loops: number = 1): string {
     const salt = randomBytes(this.salt_length).toString(this.output_type);
-    const hash = scryptSync(password, salt, this.key_length).toString(this.output_type);
-    return `${salt}:${hash}`;
+    let hash: Buffer | string = password;
+    for (let i = 0; i < loops; i++) {
+      hash = scryptSync(hash, salt, this.key_length)
+    }
+    return `${salt}:${hash.toString(this.output_type)}`;
   }
 
-  validatePassword(provided_password: string, hashed_password: string): boolean {
+  validatePassword(provided_password: string, hashed_password: string, loops: number = 1): boolean {
     const [salt, key] = hashed_password.split(':');
-    const provided_buffer = scryptSync(provided_password, salt, 64);
+    let provided_buffer: Buffer | string = provided_password;
+    for (let i = 0; i < loops; i++) {
+      provided_buffer = scryptSync(provided_buffer, salt, this.key_length);
+    }
     const stored_buffer = Buffer.from(key, this.output_type);
-    return timingSafeEqual(provided_buffer, stored_buffer);
+    return timingSafeEqual(provided_buffer as unknown as Buffer, stored_buffer);
   }
 }
 
