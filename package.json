@@ -1,12 +1,12 @@
 {
-  "version": "0.1.1",
+  "version": "0.1.2",
   "license": "MIT",
+  "description": "A very simple library that abstracts password hashing for you.",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
   "repository": "github:jaronpate/just-hash",
   "files": [
-    "dist",
-    "src"
+    "dist"
   ],
   "engines": {
     "node": ">=10"
